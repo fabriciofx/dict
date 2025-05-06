@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 import org.cactoos.text.Concatenated;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -109,10 +110,17 @@ final class DictTest {
     }
 
     @Test
+    void retrievesList() {
+        final List<Integer> ten = new ListOf<>(1, 2, 3);
+        final Dict dict = new Dict().with("ten", ten);
+        Assertions.assertEquals(ten, dict.value("ten", List.class));
+    }
+
+    @Test
     void checksJson() throws Exception {
         final Text json = new Concatenated(
             "{\"six\":\"2025-05-06 14:23:52\",\"four\":4,\"one\":\"One\",",
-            "\"seven\":{\"nine\":9.0,\"eight\":\"Eight\"},",
+            "\"seven\":{\"nine\":9.0,\"eight\":\"Eight\"},\"ten\":[1,2,3],",
             "\"five\":\"2025-05-06\",\"three\":3.14,\"two\":1.0}"
         );
         final Dict dict = new Dict()
@@ -127,7 +135,8 @@ final class DictTest {
                 new Dict()
                     .with("eight", "Eight")
                     .with("nine", 9.0)
-            );
+            )
+            .with("ten", new ListOf<>(1, 2, 3));
         Assertions.assertEquals(json.asString(), dict.asString());
     }
 
