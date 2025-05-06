@@ -10,7 +10,8 @@ output to JSON or XML.
 
 ## Usage
 
-1. Creating a new `Dict` using keys and values
+- Creating a new `Dict` using keys and values
+
 ```java
 final Dict dict = new Dict()
     .with("one", "One")
@@ -27,16 +28,17 @@ final Dict dict = new Dict()
     );
 ```
 
-2. Converting a `Dict` to JSON
+- Converting a `Dict` to JSON
 
 ```java
 System.out.println(dict.asString());
 ```
+
 ```json
 {"six":"2025-05-06 14:23:52","four":4,"one":"One","seven":{"nine":9.0,"eight":"Eight"},"five":"2025-05-06","three":3.14,"two":1.0}
 ```
 
-3. Getting a specific value from a `Dict`
+- Getting a specific value from a `Dict`
 
 ```java
 final String one = dict.value("one", String.class);
@@ -47,7 +49,7 @@ final LocalDateTime six = dict.value("six", LocalDateTime.class);
 final Dict seven = dict.value("seven", Dict.class);
 ```
 
-4. Converting a `Dict` to XML
+- Converting a `Dict` to XML
 
 ```java
 final String xml = new DictAsXml(dict).asString();
