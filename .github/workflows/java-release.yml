@@ -39,11 +39,11 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt update
-          sudo apt install -y maven
+          sudo apt install -y maven gnupg
       - name: Install maven in Windows
         if: runner.os == 'Windows'
         run: |
-          choco install maven -y
+          choco install maven gnupg -y
       - name: Setup Java SDK
         uses: actions/setup-java@v4
         with:
