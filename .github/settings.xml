@@ -27,7 +27,7 @@
     <profile>
       <id>dict</id>
       <properties>
-        <gpg.keyname>${secrets.GPG_PRIVATE_KEY}</gpg.keyname>
+        <gpg.keyname>${secrets.GPG_KEYNAME}</gpg.keyname>
         <gpg.passphrase>${secrets.GPG_PASSPHRASE}</gpg.passphrase>
       </properties>
     </profile>
