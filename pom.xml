@@ -32,6 +32,9 @@
   <groupId>com.github.fabriciofx</groupId>
   <artifactId>dict</artifactId>
   <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <name>dict</name>
+  <description>A Python-like dictionary implementation</description>
   <url>https://github.com/fabriciofx/dict</url>
   <inceptionYear>2025</inceptionYear>
   <organization>
