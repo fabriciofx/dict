@@ -27,16 +27,16 @@
     <profile>
       <id>dict</id>
       <properties>
-        <gpg.keyname>${env.GPG_PRIVATE_KEY}</gpg.keyname>
-        <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+        <gpg.keyname>${secrets.GPG_PRIVATE_KEY}</gpg.keyname>
+        <gpg.passphrase>${secrets.GPG_PASSPHRASE}</gpg.passphrase>
       </properties>
     </profile>
   </profiles>
   <servers>
     <server>
       <id>oss.sonatype.org</id>
-      <username>${env.OSSRH_USERNAME}</username>
-      <password>${env.OSSRH_PASSWORD}</password>
+      <username>${secrets.OSSRH_USERNAME}</username>
+      <password>${secrets.OSSRH_PASSWORD}</password>
     </server>
   </servers>
 </settings>
