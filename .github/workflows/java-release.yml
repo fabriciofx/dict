@@ -40,6 +40,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y maven
+          sudo gem install xcop
       - name: Install maven in Windows
         if: runner.os == 'Windows'
         run: |
