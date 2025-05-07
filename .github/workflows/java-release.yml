@@ -63,9 +63,32 @@ jobs:
           # yamllint disable-line rule:line-length
           key: ${{ runner.os }}-jdk-${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-jdk-${{ matrix.java }}-maven-
+      - name: Setup Maven settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <profiles>
+              <profile>
+                <id>dict</id>
+                <properties>
+                  <gpg.keyname>${{ secrets.GPG_KEYNAME }}</gpg.keyname>
+                  <gpg.passphrase>${{ secrets.GPG_PASSPHRASE }}</gpg.passphrase>
+                </properties>
+              </profile>
+            </profiles>
+            <servers>
+              <server>
+                <id>oss.sonatype.org</id>
+                <username>${{ secrets.OSSRH_USERNAME }}</username>
+                <password>${{ secrets.OSSRH_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
       - name: Deploy to Maven Central
         # yamllint disable-line rule:line-length
-        run: mvn clean deploy -Pqulice -Psonatype -Pdict -DskipTests=true --errors --batch-mode --settings=.github/settings.xml
+        run: mvn clean deploy -Pqulice -Psonatype -Pdict -DskipTests=true --errors --batch-mode
         env:
           GPG_TTY: $(tty)
           # yamllint disable-line rule:line-length
