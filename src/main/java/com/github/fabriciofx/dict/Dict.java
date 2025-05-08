@@ -45,6 +45,7 @@ import org.cactoos.scalar.Unchecked;
 
 /**
  * Dict.
+ *
  * A Python-like dictionary.
  *
  * @since 0.0.1
