@@ -38,7 +38,9 @@ jobs:
           sudo apt update
           sudo apt install -y maven
       - name: Install xcop
-        run: sudo gem install xcop
+        run: |
+          sudo apt install -y ruby
+          sudo gem install xcop
       - name: Setup Java SDK
         uses: actions/setup-java@v4
         with:
