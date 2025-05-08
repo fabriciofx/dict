@@ -65,4 +65,14 @@ jobs:
       - name: Check maven version
         run: mvn -version
       - name: Build project
-        run: mvn --errors --batch-mode clean install -Pqulice
+        run: |
+          MVN=$(which mvn)
+          if [[ -x "mvnw" ]]; then
+            MVN="./mvnw"
+          fi
+          qulice=$($MVN help:all-profiles | grep qulice)
+          if [[ -n "$qulice" ]]; then
+            $MVN --errors --batch-mode clean install -Pqulice
+          else
+            $MVN --errors --batch-mode clean install
+          fi
