@@ -23,14 +23,18 @@
  */
 package com.github.fabriciofx.dict;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import org.cactoos.Text;
+import org.cactoos.io.InputOf;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.Concatenated;
+import org.cactoos.text.TextOf;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -145,6 +149,21 @@ final class DictTest {
         final Dict dict = new Dict("{\"numbers\":[1,2,3]}");
         final List<Integer> numbers = dict.value("numbers", List.class);
         Assertions.assertEquals(new ListOf<>(1, 2, 3), numbers);
+    }
+
+    @Test
+    void jsonJokes() throws Exception {
+        final Text json = new TextOf(
+            new InputOf(
+                new FileInputStream(
+                    "src/test/resources/jokes.json"
+                )
+            )
+        );
+//        System.out.println(json.asString());
+        final Dict dict = new Dict(json.asString());
+        final List<Dict> jokes = dict.value("", List.class);
+        System.out.println(jokes.size());
     }
 
     @Test
