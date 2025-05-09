@@ -43,10 +43,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y maven
-      - name: Install maven in Windows
-        if: runner.os == 'Windows'
-        run: |
-          choco install maven -y
       - name: Setup Java SDK
         uses: actions/setup-java@v4
         with:
