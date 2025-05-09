@@ -61,6 +61,7 @@ jobs:
       - name: Check maven version
         run: mvn -version
       - name: Build project
+        if: runner.os != 'Windows'
         run: |
           MVN=$(which mvn)
           if [[ -x "mvnw" ]]; then
@@ -72,3 +73,20 @@ jobs:
           else
             $MVN --errors --batch-mode clean install
           fi
+      - name: Build project
+        if: runner.os == 'Windows'
+        run: |
+          for /f "delims=" %i in ('mvn help:all-profiles ^| findstr qulice') do set qulice=%i
+          if exist "mvnw.cmd" (
+            if defined qulice (
+              mvnw.cmd --errors --batch-mode clean install -Pqulice
+            ) else (
+              mvnw.cmd --errors --batch-mode clean install
+            )
+          ) else (
+            if defined qulice (
+              mvn --errors --batch-mode clean install -Pqulice
+            ) else (
+              mvn --errors --batch-mode clean install
+            )
+          )
