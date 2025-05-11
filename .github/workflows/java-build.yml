@@ -92,3 +92,4 @@ jobs:
             )
           )
         # yamllint enable rule:line-length
+        shell: cmd
