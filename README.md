@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: Copyright (C) 2025 Fabrício Barros Cabral
+SPDX-License-Identifier: MIT
+-->
+
 # Dict
 
 A Python-like dictionary implementation for Java.
