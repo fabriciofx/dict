@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: markdown-lint
+name: xml-duplication
 'on':
   push:
     branches:
@@ -28,17 +28,21 @@ name: markdown-lint
   pull_request:
     branches:
       - main
-concurrency:
-  group: markdown-lint-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
-  markdown-lint:
+  xml-duplication:
     timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Lint Markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v19
+      - name: Setup Java SDK
+      - uses: actions/setup-java@v4
         with:
-          globs: '**/*.md'
+          distribution: 'temurin'
+          java-version: 17
+      - name: Download Simian
+        run: |
+          wget --quiet http://public.yegor256.com/simian.jar -O /tmp/simian.jar
+      - name: Check XML duplication
+        run: |
+          java -jar /tmp/simian.jar -threshold=16 "-excludes=**/it" "**/*.xml"

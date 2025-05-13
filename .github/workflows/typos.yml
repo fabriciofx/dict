@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: copyrights
+name: typos
 'on':
   push:
     branches:
@@ -29,13 +29,11 @@ name: copyrights
     branches:
       - main
 jobs:
-  copyrights:
+  typos:
+    timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Check copyright header
-        uses: yegor256/copyrights-action@0.0.8
-        with:
-          ignore: >-
-            **/*.properties
+      - name: Check files for typos
+        uses: crate-ci/typos@v1.32.0

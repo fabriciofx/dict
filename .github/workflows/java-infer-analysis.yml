@@ -20,25 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: markdown-lint
+name: java-infer-analysis
 'on':
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-concurrency:
-  group: markdown-lint-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
-  markdown-lint:
+  java-infer-analysis:
     timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Lint Markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v19
+      - name: Setup Infer
+        uses: srz-zumix/setup-infer@v1
         with:
-          globs: '**/*.md'
+          infer_version: v1.0.0
+        run: |
+          infer --version
+          infer run --fail-on-issue --no-progress-bar -- mvn test
