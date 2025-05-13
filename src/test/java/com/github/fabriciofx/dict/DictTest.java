@@ -269,20 +269,22 @@ final class DictTest {
                 "items",
                 new Dict()
                     .with(
-                        "1", new Dict()
-                            .with("product", "Meia Lua Pandeirola Liverpool 16")
-                            .with("amount", 5.0)
-                            .with("price", 58.95)
-                    ).with(
-                        "2", new Dict()
-                            .with("product", "Guitarra Fender")
-                            .with("amount", 3.0)
-                            .with("price", 5010.99)
-                    ).with(
                         "3", new Dict()
                             .with("product", "Bateria DX-722")
                             .with("amount", 1.0)
                             .with("price", 3003.60)
+                    )
+                    .with(
+                        "2", new Dict()
+                            .with("product", "Guitarra Fender")
+                            .with("amount", 3.0)
+                            .with("price", 5010.99)
+                    )
+                    .with(
+                        "1", new Dict()
+                            .with("product", "Meia Lua Pandeirola Liverpool 16")
+                            .with("amount", 5.0)
+                            .with("price", 58.95)
                     )
             )
             .with("total", new BigDecimal("18331.32"));
