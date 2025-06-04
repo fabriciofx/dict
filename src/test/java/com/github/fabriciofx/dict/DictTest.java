@@ -20,7 +20,11 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.0.1
  */
-@SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
+@SuppressWarnings({
+    "unchecked",
+    "PMD.TooManyMethods",
+    "PMD.AvoidDuplicateLiterals"
+})
 final class DictTest {
     @Test
     void checksKeys() {
@@ -124,7 +128,10 @@ final class DictTest {
     @Test
     void jsonToList() throws Exception {
         final Dict dict = new Dict("{\"numbers\":[1,2,3]}");
-        final List<Integer> numbers = dict.value("numbers", List.class);
+        final List<Integer> numbers = dict.value(
+            "numbers",
+            List.class
+        );
         Assertions.assertEquals(new ListOf<>(1, 2, 3), numbers);
     }
 
