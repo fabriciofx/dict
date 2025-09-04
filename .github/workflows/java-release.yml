@@ -19,10 +19,13 @@ jobs:
         uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - name: Install maven
+      - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y maven
+          sudo apt-get update
+          if [ -s apt-packages.txt ]; then
+            xargs -a apt-packages.txt sudo apt-get install \
+              -y --no-install-recommends
+          fi
       - name: Setup Java SDK
         uses: actions/setup-java@v5
         with:
