@@ -6,6 +6,12 @@ name: java-coverage
   push:
     branches:
       - main
+      - master
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
+permissions:
+  contents: read
 jobs:
   java-coverage:
     timeout-minutes: 15
@@ -13,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: Setup Java SDK
         uses: actions/setup-java@v5
         with:

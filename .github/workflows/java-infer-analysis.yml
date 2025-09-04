@@ -6,6 +6,12 @@ name: java-infer-analysis
   push:
     branches:
       - main
+      - master
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
+permissions:
+  contents: read
 jobs:
   java-infer-analysis:
     timeout-minutes: 15
@@ -13,10 +19,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-      - name: Setup Infer
-        uses: srz-zumix/setup-infer@v1
         with:
-          infer_version: v1.0.0
+          persist-credentials: false
+      - name: Setup Infer
+        uses: srz-zumix/setup-infer@530856effeae228d1f3c8251c91ea8348d9480ee
       - name: Run infer
         run: |
           infer --version
