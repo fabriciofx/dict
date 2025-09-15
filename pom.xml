@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
   </parent>
   <groupId>com.github.fabriciofx</groupId>
   <artifactId>dict</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
   <packaging>jar</packaging>
   <name>dict</name>
   <description>A Python-like dictionary implementation</description>
@@ -228,7 +228,7 @@ SPDX-License-Identifier: MIT
                         <limit>
                           <counter>BRANCH</counter>
                           <value>COVEREDRATIO</value>
-                          <minimum>0.00</minimum>
+                          <minimum>0.01</minimum>
                         </limit>
                         <limit>
                           <counter>COMPLEXITY</counter>
