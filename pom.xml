@@ -47,8 +47,13 @@ SPDX-License-Identifier: MIT
     <system>GitHub</system>
     <url>https://github.com/fabriciofx/dict/issues</url>
   </issueManagement>
+  <ciManagement>
+    <system>GitHub Actions</system>
+    <url>https://github.com/fabriciofx/dict/actions</url>
+  </ciManagement>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <maven.plugin.validation>VERBOSE</maven.plugin.validation>
   </properties>
   <dependencies>
@@ -131,9 +136,6 @@ SPDX-License-Identifier: MIT
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.0</version>
-        <configuration combine.self="override">
-          <release>17</release>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -301,11 +303,10 @@ SPDX-License-Identifier: MIT
                 </goals>
                 <configuration>
                   <failOnError>true</failOnError>
-                  <source>17</source>
                   <quiet>true</quiet>
                   <detectLinks>false</detectLinks>
                   <detectJavaApiLink>false</detectJavaApiLink>
-                  <additionalOptions>-Xdoclint:none</additionalOptions>
+                  <additionalOptions>${javadoc.opts}</additionalOptions>
                   <tags>
                     <tag>
                       <name>todo</name>
