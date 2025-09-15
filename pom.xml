@@ -278,7 +278,7 @@ SPDX-License-Identifier: MIT
             <version>3.3.1</version>
             <executions>
               <execution>
-                <id>jcabi-sources</id>
+                <id>artifact-sources</id>
                 <configuration>
                   <forceCreation>true</forceCreation>
                 </configuration>
@@ -294,7 +294,7 @@ SPDX-License-Identifier: MIT
             <version>3.11.3</version>
             <executions>
               <execution>
-                <id>jcabi-javadoc</id>
+                <id>artifact-javadoc</id>
                 <phase>package</phase>
                 <goals>
                   <goal>jar</goal>
