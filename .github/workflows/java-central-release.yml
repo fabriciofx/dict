@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 ---
 # yamllint disable rule:line-length
-name: java-release
+name: java-central-release
 'on':
   push:
     tags:
@@ -10,10 +10,10 @@ name: java-release
 permissions:
   contents: read
 jobs:
-  java-release:
-    uses: fabriciofx/github-workflows/.github/workflows/java-release-template.yml@main
+  java-central-release:
+    uses: fabriciofx/github-workflows/.github/workflows/java-central-release-template.yml@main
     secrets:
       RELEASE_KEYNAME: ${{ secrets.GPG_KEYNAME }}
       RELEASE_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      RELEASE_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      RELEASE_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      RELEASE_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+      RELEASE_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
