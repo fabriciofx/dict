@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,12 +33,7 @@ import org.cactoos.scalar.Unchecked;
 @SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 @JsonSerialize(using = DictToJson.class)
 @JsonDeserialize(using = JsonToDict.class)
-public final class Dict implements Text, Serializable {
-    /**
-     * Serial for serialization.
-     */
-    private static final long serialVersionUID = 2_300_063_633_010_907_762L;
-
+public final class Dict implements Text {
     /**
      * Map.
      */
