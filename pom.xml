@@ -55,6 +55,7 @@ SPDX-License-Identifier: MIT
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <maven.plugin.validation>VERBOSE</maven.plugin.validation>
+    <skip.gpg.signing>true</skip.gpg.signing>
   </properties>
   <dependencies>
     <dependency>
