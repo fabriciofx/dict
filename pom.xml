@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
   </parent>
   <groupId>com.github.fabriciofx</groupId>
   <artifactId>dict</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <packaging>jar</packaging>
   <name>dict</name>
   <description>A Python-like dictionary implementation</description>
@@ -128,6 +128,7 @@ SPDX-License-Identifier: MIT
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.0</version>
         <configuration combine.self="override">
@@ -339,8 +340,6 @@ SPDX-License-Identifier: MIT
                 <arg>--pinentry-mode</arg>
                 <arg>loopback</arg>
               </gpgArguments>
-              <keyname>${env.GPG_KEYNAME}</keyname>
-              <passphrase>${env.GPG_PASSPHRASE}</passphrase>
             </configuration>
           </plugin>
         </plugins>
