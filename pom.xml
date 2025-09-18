@@ -216,6 +216,9 @@ SPDX-License-Identifier: MIT
   <profiles>
     <profile>
       <id>qulice</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -233,6 +236,9 @@ SPDX-License-Identifier: MIT
     </profile>
     <profile>
       <id>jacoco</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -309,6 +315,9 @@ SPDX-License-Identifier: MIT
     </profile>
     <profile>
       <id>central</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
