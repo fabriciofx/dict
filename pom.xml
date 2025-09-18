@@ -9,6 +9,7 @@ SPDX-License-Identifier: MIT
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
     <version>0.69.6</version>
+    <relativePath/>
   </parent>
   <groupId>com.github.fabriciofx</groupId>
   <artifactId>dict</artifactId>
