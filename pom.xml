@@ -8,12 +8,12 @@ SPDX-License-Identifier: MIT
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.70.0</version>
     <relativePath/>
   </parent>
   <groupId>com.github.fabriciofx</groupId>
   <artifactId>dict</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.38</version>
   <packaging>jar</packaging>
   <name>dict</name>
   <description>A Python-like dictionary implementation</description>
