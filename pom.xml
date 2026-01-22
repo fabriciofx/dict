@@ -314,28 +314,5 @@ SPDX-License-Identifier: MIT
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>central</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.sonatype.central</groupId>
-            <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>0.10.0</version>
-            <extensions>true</extensions>
-            <configuration>
-              <publishingServerId>central</publishingServerId>
-              <autoPublish>true</autoPublish>
-              <waitUntil>validated</waitUntil>
-              <deploymentName>${project.version}</deploymentName>
-              <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
 </project>
