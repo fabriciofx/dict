@@ -4,18 +4,19 @@
  */
 package com.github.fabriciofx.dict;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.llorllale.cactoos.matchers.Assertion;
+import org.llorllale.cactoos.matchers.IsTrue;
 
 /**
  * Test case for {@link Contains}.
  *
  * @since 0.0.1
  */
-@SuppressWarnings("PMD.UnnecessaryLocalRule")
+@SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.UnitTestShouldIncludeAssert"})
 final class ContainsTest {
     @Test
-    void contains() throws Exception {
+    void checkIfADictContainsOther() throws Exception {
         final Dict first = new Dict()
             .with("id", "e576ddbb-d2f1-4bed-88ee-8eb5b6b57ecf")
             .with("client", "Samuel Rosa")
@@ -43,6 +44,10 @@ final class ContainsTest {
                     .with("neighborhood", "Moema")
                     .with("zipcode", "12345678")
             );
-        Assertions.assertTrue(new Contains(first, second).value());
+        new Assertion<>(
+            "must contain the second dict in the first one",
+            new Contains(first, second).value(),
+            new IsTrue()
+        ).affirm();
     }
 }

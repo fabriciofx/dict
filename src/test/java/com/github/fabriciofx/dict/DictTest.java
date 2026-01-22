@@ -8,12 +8,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-import org.cactoos.Text;
 import org.cactoos.list.ListOf;
-import org.cactoos.text.Concatenated;
-import org.junit.jupiter.api.Assertions;
+import org.cactoos.set.SetOf;
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsNot;
 import org.junit.jupiter.api.Test;
+import org.llorllale.cactoos.matchers.Assertion;
+import org.llorllale.cactoos.matchers.IsText;
 
 /**
  * Test case for {@link Dict}.
@@ -24,91 +25,126 @@ import org.junit.jupiter.api.Test;
     "unchecked",
     "PMD.TooManyMethods",
     "PMD.AvoidDuplicateLiterals",
-    "PMD.UnnecessaryLocalRule"
+    "PMD.UnnecessaryLocalRule",
+    "PMD.UnitTestShouldIncludeAssert"
 })
 final class DictTest {
     @Test
     void checksKeys() {
         final Dict dict = new Dict(
-            "{\"1\": \"one\", \"2\": \"two\", \"3\": \"three\"}"
+            """
+            {"1": "one", "2": "two", "3": "three"}
+            """
         );
-        Assertions.assertEquals(Set.of("1", "2", "3"), dict.keys());
+        new Assertion<>(
+            "must have the correct keys",
+            dict.keys(),
+            new IsEqual<>(new SetOf<>("1", "2", "3"))
+        ).affirm();
     }
 
     @Test
     void checksValues() {
         final Dict dict = new Dict(
-            "{\"1\": \"one\", \"2\": \"two\", \"3\": \"three\"}"
+            """
+            {"1": "one", "2": "two", "3": "three"}
+            """
         );
-        Assertions.assertIterableEquals(
-            List.of("one", "two", "three"),
-            dict.values()
-        );
+        new Assertion<>(
+            "must have the correct values",
+            new ListOf<>(dict.values()),
+            new IsEqual<>(new ListOf<>("one", "two", "three"))
+        ).affirm();
     }
 
     @Test
     void retrievesString() {
-        final String one = "One";
-        final Dict dict = new Dict().with("one", one);
-        Assertions.assertEquals(one, dict.value("one", String.class));
+        final Dict dict = new Dict().with("1", "One");
+        new Assertion<>(
+            "must retrieve the correct string",
+            dict.value("1", String.class),
+            new IsEqual<>("One")
+        ).affirm();
     }
 
     @Test
     void retrievesDouble() {
-        final double num = 1.0;
-        final Dict dict = new Dict().with("two", num);
-        Assertions.assertEquals(num, dict.value("two", Double.class));
+        final Dict dict = new Dict().with("two", 3.1415);
+        new Assertion<>(
+            "must retrieve the correct double",
+            dict.value("two", Double.class),
+            new IsEqual<>(3.1415)
+        ).affirm();
     }
 
     @Test
     void retrievesBigDecimal() {
-        final BigDecimal num = new BigDecimal("3.14");
-        final Dict dict = new Dict().with("three", num);
-        Assertions.assertEquals(num, dict.value("three", BigDecimal.class));
+        final Dict dict = new Dict().with("three", new BigDecimal("3.14"));
+        new Assertion<>(
+            "must retrieve the correct BigDecimal",
+            dict.value("three", BigDecimal.class),
+            new IsEqual<>(new BigDecimal("3.14"))
+        ).affirm();
     }
 
     @Test
     void retrievesInteger() {
-        final int num = 4;
-        final Dict dict = new Dict().with("four", num);
-        Assertions.assertEquals(num, dict.value("four", Integer.class));
+        final Dict dict = new Dict().with("four", 4);
+        new Assertion<>(
+            "must retrieve the correct Integer",
+            dict.value("four", Integer.class),
+            new IsEqual<>(4)
+        ).affirm();
     }
 
     @Test
     void retrievesLocalDate() {
-        final LocalDate date = LocalDate.of(2025, 5, 6);
-        final Dict dict = new Dict().with("five", date);
-        Assertions.assertEquals(date, dict.value("five", LocalDate.class));
+        final Dict dict = new Dict().with("five", LocalDate.of(2025, 5, 6));
+        new Assertion<>(
+            "must retrieve the correct LocalDate",
+            dict.value("five", LocalDate.class),
+            new IsEqual<>(LocalDate.of(2025, 5, 6))
+        ).affirm();
     }
 
     @Test
     void retrievesLocalDateTime() {
-        final LocalDateTime time = LocalDateTime.of(2025, 5, 6, 14, 23, 52);
-        final Dict dict = new Dict().with("six", time);
-        Assertions.assertEquals(time, dict.value("six", LocalDateTime.class));
+        final Dict dict = new Dict().with(
+            "six",
+            LocalDateTime.of(2025, 5, 6, 14, 23, 52)
+        );
+        new Assertion<>(
+            "must retrieve the correct LocalDateTime",
+            dict.value("six", LocalDateTime.class),
+            new IsEqual<>(LocalDateTime.of(2025, 5, 6, 14, 23, 52))
+        ).affirm();
     }
 
     @Test
     void retrievesDict() {
-        final Dict seven = new Dict().with("eight", "Eight").with("nine", 9.0);
-        final Dict dict = new Dict().with("seven", seven);
-        Assertions.assertEquals(seven, dict.value("seven", Dict.class));
+        final Dict dict = new Dict().with(
+            "seven",
+            new Dict().with("8", "eight").with("nine", 9.0)
+        );
+        new Assertion<>(
+            "must retrieve the correct Dict",
+            dict.value("seven", Dict.class),
+            new IsEqual<>(new Dict().with("8", "eight").with("nine", 9.0))
+        ).affirm();
     }
 
     @Test
     void retrievesList() {
-        final List<Integer> ten = new ListOf<>(1, 2, 3);
-        final Dict dict = new Dict().with("ten", ten);
-        Assertions.assertEquals(ten, dict.value("ten", List.class));
+        final Dict dict = new Dict().with("ten", new ListOf<>(1, 2, 3));
+        new Assertion<>(
+            "must retrieve the correct List",
+            dict.value("ten", List.class),
+            new IsEqual<>(new ListOf<>(1, 2, 3))
+        ).affirm();
     }
 
     @Test
-    void checksJson() throws Exception {
-        final Text json = new Concatenated(
-            "{\"six\":\"2025-05-06 14:23:52\",\"four\":4,\"one\":\"One\",",
-            "\"seven\":{\"nine\":9.0,\"eight\":\"Eight\"},\"ten\":[1,2,3],",
-            "\"five\":\"2025-05-06\",\"three\":3.14,\"two\":1.0}"
-        );
+    void checksJson() {
         final Dict dict = new Dict()
             .with("one", "One")
             .with("two", 1.0)
@@ -123,55 +159,94 @@ final class DictTest {
                     .with("nine", 9.0)
             )
             .with("ten", new ListOf<>(1, 2, 3));
-        Assertions.assertEquals(json.asString(), dict.asString());
+        new Assertion<>(
+            "must convert Dict to JSON correctly",
+            dict,
+            new IsText(
+                """
+                {"six":"2025-05-06 14:23:52","four":4,"one":"One",\
+                "seven":{"nine":9.0,"eight":"Eight"},"ten":[1,2,3],\
+                "five":"2025-05-06","three":3.14,"two":1.0}\
+                """
+            )
+        ).affirm();
     }
 
     @Test
-    void jsonToList() throws Exception {
+    void jsonToList() {
         final Dict dict = new Dict("{\"numbers\":[1,2,3]}");
         final List<Integer> numbers = dict.value(
             "numbers",
             List.class
         );
-        Assertions.assertEquals(new ListOf<>(1, 2, 3), numbers);
+        new Assertion<>(
+            "must convert JSON array to List correctly",
+            numbers,
+            new IsEqual<>(new ListOf<>(1, 2, 3))
+        ).affirm();
     }
 
     @Test
     void countsEmptyStringAsZero() {
-        final Dict dict = new Dict("");
-        Assertions.assertEquals(0, dict.count());
+        new Assertion<>(
+            "must count empty string as zero",
+            new Dict("").count(),
+            new IsEqual<>(0)
+        ).affirm();
     }
 
     @Test
     void countsEmptyDictAsZero() {
-        final Dict dict = new Dict("{}");
-        Assertions.assertEquals(0, dict.count());
+        new Assertion<>(
+            "must count empty dict as zero",
+            new Dict("{}").count(),
+            new IsEqual<>(0)
+        ).affirm();
     }
 
     @Test
     void countsOne() {
-        final Dict dict = new Dict("{\"1\": \"one\"}");
-        Assertions.assertEquals(1, dict.count());
+        final Dict dict = new Dict(
+            """
+            {"1": "one"}
+            """
+        );
+        new Assertion<>(
+            "must count one item",
+            dict.count(),
+            new IsEqual<>(1)
+        ).affirm();
     }
 
     @Test
     void countsThree() {
         final Dict dict = new Dict(
-            "{\"1\": \"one\", \"2\": \"two\", \"3\": \"three\"}"
+            """
+            {"1": "one", "2": "two", "3": "three"}
+            """
         );
-        Assertions.assertEquals(3, dict.count());
+        new Assertion<>(
+            "must count three items",
+            dict.count(),
+            new IsEqual<>(3)
+        ).affirm();
     }
 
     @Test
-    void createsDictUsingFluent() throws Exception {
+    void createsDictUsingFluent() {
         final Dict dict = new Dict()
             .with("1", "one")
             .with("2", "two")
             .with("3", "three");
-        Assertions.assertEquals(
-            "{\"1\":\"one\",\"2\":\"two\",\"3\":\"three\"}",
-            dict.asString()
-        );
+        new Assertion<>(
+            "must create Dict using fluent interface",
+            dict,
+            new IsText(
+                """
+                {"1":"one","2":"two","3":"three"}\
+                """
+            )
+        ).affirm();
     }
 
     @Test
@@ -184,7 +259,11 @@ final class DictTest {
             .with("1", "one")
             .with("2", "two")
             .with("3", "three");
-        Assertions.assertEquals(first, second);
+        new Assertion<>(
+            "must be equal dicts",
+            first,
+            new IsEqual<>(second)
+        ).affirm();
     }
 
     @Test
@@ -196,7 +275,11 @@ final class DictTest {
             .with("1", "one")
             .with("2", "two")
             .with("3", "three");
-        Assertions.assertNotEquals(first, second);
+        new Assertion<>(
+            "must be not equal dicts",
+            first,
+            new IsNot<>(new IsEqual<>(second))
+        ).affirm();
     }
 
     @Test
@@ -221,12 +304,16 @@ final class DictTest {
             )
             .with("1", "one")
             .with("2", "two");
-        Assertions.assertEquals(first, second);
+        new Assertion<>(
+            "must be equal unordered and composed dicts",
+            first,
+            new IsEqual<>(second)
+        ).affirm();
     }
 
     @Test
     void checksUnorderedAndDeeplyComposed() {
-        final Dict end = new Dict()
+        final Dict address = new Dict()
             .with("street", "Rua do Benfica")
             .with("number", "123")
             .with("complement", "Apto 201")
@@ -255,7 +342,7 @@ final class DictTest {
             .with("cpf", "25066158065")
             .with("client", "Samuel Rosa")
             .with("id", "07e2c7f2-6c61-4f20-a4bc-6022337950b4")
-            .with("address", end)
+            .with("address", address)
             .with("items", items)
             .with("total", new BigDecimal("18331.32"));
         final Dict second = new Dict()
@@ -296,16 +383,20 @@ final class DictTest {
                     )
             )
             .with("total", new BigDecimal("18331.32"));
-        Assertions.assertEquals(first, second);
+        new Assertion<>(
+            "must be equal unordered and deeply composed dicts",
+            first,
+            new IsEqual<>(second)
+        ).affirm();
     }
 
     @Test
     void checksDictWithLocalDate() {
-        final LocalDate birth = LocalDate.of(1962, 3, 16);
-        final Dict dict = new Dict().with("birth", birth);
-        Assertions.assertEquals(
-            dict.value("birth", LocalDate.class),
-            birth
-        );
+        final Dict dict = new Dict().with("birth", LocalDate.of(1962, 3, 16));
+        new Assertion<>(
+            "must be equal dicts with LocalDate",
+            dict,
+            new IsEqual<>(new Dict().with("birth", LocalDate.of(1962, 3, 16)))
+        ).affirm();
     }
 }

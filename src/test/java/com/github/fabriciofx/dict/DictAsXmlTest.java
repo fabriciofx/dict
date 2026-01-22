@@ -7,25 +7,19 @@ package com.github.fabriciofx.dict;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import org.cactoos.Text;
-import org.cactoos.text.Concatenated;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.llorllale.cactoos.matchers.Assertion;
+import org.llorllale.cactoos.matchers.IsText;
 
 /**
  * Test case for {@link DictAsXml}.
  *
  * @since 0.0.1
  */
-@SuppressWarnings("PMD.UnnecessaryLocalRule")
+@SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.UnitTestShouldIncludeAssert"})
 final class DictAsXmlTest {
     @Test
-    void asXml() throws Exception {
-        final Text xml = new Concatenated(
-            "<six>2025-05-06 14:23:52</six><four>4</four><one>One</one>",
-            "<seven><nine>9.0</nine><eight>Eight</eight></seven>",
-            "<five>2025-05-06</five><three>3.14</three><two>1.0</two>"
-        );
+    void convertDictToXml() throws Exception {
         final Dict dict = new Dict()
             .with("one", "One")
             .with("two", 1.0)
@@ -39,19 +33,21 @@ final class DictAsXmlTest {
                     .with("eight", "Eight")
                     .with("nine", 9.0)
             );
-        Assertions.assertEquals(xml.asString(), new DictAsXml(dict).asString());
+        new Assertion<>(
+            "must convert Dict to XML correctly",
+            new DictAsXml(dict),
+            new IsText(
+                """
+                <six>2025-05-06 14:23:52</six><four>4</four><one>One</one>\
+                <seven><nine>9.0</nine><eight>Eight</eight></seven>\
+                <five>2025-05-06</five><three>3.14</three><two>1.0</two>\
+                """
+            )
+        ).affirm();
     }
 
     @Test
-    void clientAsXml() throws Exception {
-        final Text xml = new Concatenated(
-            "<address><zipcode>58015805</zipcode><number>349</number>",
-            "<city>João Pessoa</city><street>Av Cruz das Armas</street>",
-            "<state>PB</state><neighborhood>Jaguaribe</neighborhood>",
-            "<complement></complement></address><cpf>58613518052</cpf>",
-            "<name>Branco Mello</name><birth>1962-03-16</birth>",
-            "<email>brancomello@gmail.com</email>"
-        );
+    void convertDictClientToXml() throws Exception {
         final Dict dict = new Dict()
             .with("name", "Branco Mello")
             .with(
@@ -68,6 +64,19 @@ final class DictAsXmlTest {
             .with("cpf", "58613518052")
             .with("email", "brancomello@gmail.com")
             .with("birth", LocalDate.of(1962, 3, 16));
-        Assertions.assertEquals(xml.asString(), new DictAsXml(dict).asString());
+        new Assertion<>(
+            "must convert Dict client to XML correctly",
+            new DictAsXml(dict),
+            new IsText(
+                """
+                <address><zipcode>58015805</zipcode><number>349</number>\
+                <city>João Pessoa</city><street>Av Cruz das Armas</street>\
+                <state>PB</state><neighborhood>Jaguaribe</neighborhood>\
+                <complement></complement></address><cpf>58613518052</cpf>\
+                <name>Branco Mello</name><birth>1962-03-16</birth>\
+                <email>brancomello@gmail.com</email>\
+                """
+            )
+        ).affirm();
     }
 }
