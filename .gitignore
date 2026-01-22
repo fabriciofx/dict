@@ -1,11 +1,13 @@
 # SPDX-FileCopyrightText: Copyright (C) 2025-2026 Fabrício Barros Cabral
 # SPDX-License-Identifier: MIT
-.vscode/
 target/
-.idea
+.vscode/
+.idea/
+.mvn/
 .DS_Store
 *.iml
 .project
 .settings
 .classpath
 .recommenders
+sonar-project.properties
