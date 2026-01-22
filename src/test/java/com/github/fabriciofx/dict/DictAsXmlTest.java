@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.0.1
  */
+@SuppressWarnings("PMD.UnnecessaryLocalRule")
 final class DictAsXmlTest {
     @Test
     void asXml() throws Exception {

@@ -5,7 +5,6 @@
 package com.github.fabriciofx.dict;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -40,9 +39,9 @@ public final class DictAsXml implements Text {
         final XmlMapper xml = new XmlMapper();
         xml.registerModule(new JavaTimeModule());
         try {
-            final JsonNode node = mapper.readTree(this.origin.asString());
-            return xml.writeValueAsString(node)
-                .replaceAll("^<ObjectNode>|</ObjectNode>$", "");
+            return xml.writeValueAsString(
+                mapper.readTree(this.origin.asString())
+            ).replaceAll("^<ObjectNode>|</ObjectNode>$", "");
         } catch (final JsonProcessingException ex) {
             throw new Exception(ex);
         }

@@ -23,7 +23,8 @@ import org.junit.jupiter.api.Test;
 @SuppressWarnings({
     "unchecked",
     "PMD.TooManyMethods",
-    "PMD.AvoidDuplicateLiterals"
+    "PMD.AvoidDuplicateLiterals",
+    "PMD.UnnecessaryLocalRule"
 })
 final class DictTest {
     @Test

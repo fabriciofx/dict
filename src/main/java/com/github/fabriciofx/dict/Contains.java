@@ -40,8 +40,7 @@ public final class Contains implements Scalar<Boolean> {
         for (final String key : this.first.keys()) {
             if (this.second.keys().contains(key)) {
                 final Object valuea = this.first.value(key, Object.class);
-                final Object valueb = this.second.value(key, Object.class);
-                if (!valuea.equals(valueb)) {
+                if (!valuea.equals(this.second.value(key, Object.class))) {
                     result = false;
                     break;
                 }
