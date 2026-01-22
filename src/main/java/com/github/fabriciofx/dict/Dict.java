@@ -25,9 +25,7 @@ import org.cactoos.scalar.Unchecked;
 
 /**
  * Dict.
- *
- * A Python-like dictionary.
- *
+ * <p> A Python-like dictionary for Java.
  * @since 0.0.1
  */
 @SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
@@ -100,7 +98,6 @@ public final class Dict implements Text {
 
     /**
      * Dict keys.
-     *
      * @return A set of dict keys.
      */
     public Set<String> keys() {
@@ -109,7 +106,6 @@ public final class Dict implements Text {
 
     /**
      * Dict values.
-     *
      * @return A collection of dict values.
      */
     public Collection<Object> values() {
@@ -118,7 +114,6 @@ public final class Dict implements Text {
 
     /**
      * Count.
-     *
      * @return Amount of dict entries.
      */
     public int count() {
@@ -138,7 +133,6 @@ public final class Dict implements Text {
 
     /**
      * Build a dict.
-     *
      * @param key The key of value.
      * @param value The value to store in dict.
      * @return A new dict with the key and value stored.
