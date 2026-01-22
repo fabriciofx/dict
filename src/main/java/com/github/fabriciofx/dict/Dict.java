@@ -152,7 +152,8 @@ public final class Dict implements Text {
 
     @Override
     public boolean equals(final Object dict) {
-        return dict instanceof Dict
+        return this == dict
+            || dict instanceof Dict
             && Dict.class.cast(dict).scalar.value().equals(this.scalar.value());
     }
 
