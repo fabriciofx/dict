@@ -4,7 +4,8 @@
  */
 
 /**
- * Dict tests.
- * @since 0.0.1
+ * XML.
+ *
+ * @since 0.0.39
  */
-package com.github.fabriciofx.dict;
+package com.github.fabriciofx.dict.xml;

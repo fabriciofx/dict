@@ -2,8 +2,10 @@
  * SPDX-FileCopyrightText: Copyright (C) 2025-2026 Fabrício Barros Cabral
  * SPDX-License-Identifier: MIT
  */
-package com.github.fabriciofx.dict;
+package com.github.fabriciofx.dict.set;
 
+import com.github.fabriciofx.dict.Dict;
+import com.github.fabriciofx.dict.DictOf;
 import org.junit.jupiter.api.Test;
 import org.llorllale.cactoos.matchers.Assertion;
 import org.llorllale.cactoos.matchers.IsTrue;

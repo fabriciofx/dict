@@ -2,12 +2,13 @@
  * SPDX-FileCopyrightText: Copyright (C) 2025-2026 Fabrício Barros Cabral
  * SPDX-License-Identifier: MIT
  */
-package com.github.fabriciofx.dict;
+package com.github.fabriciofx.dict.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.fabriciofx.dict.Dict;
 import org.cactoos.Text;
 
 /**
