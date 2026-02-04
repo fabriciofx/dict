@@ -15,6 +15,8 @@ import org.hamcrest.core.IsNot;
 import org.junit.jupiter.api.Test;
 import org.llorllale.cactoos.matchers.Assertion;
 import org.llorllale.cactoos.matchers.IsText;
+import org.llorllale.cactoos.matchers.Matches;
+import org.llorllale.cactoos.matchers.Throws;
 
 /**
  * Test case for {@link DictOf}.
@@ -397,6 +399,98 @@ final class DictOfTest {
             "must be equal dicts with LocalDate",
             dict,
             new IsEqual<>(new DictOf().with("birth", LocalDate.of(1962, 3, 16)))
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasBadJson() {
+        new Assertion<>(
+            "must throw an exception when Dict has a bad JSON",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf("{bad json}").asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonWithLastComma() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON with last comma",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf(
+                    "{\"name\": \"John\", \"age\": 42,}"
+                ).asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonWithSingleQuote() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON with single quote",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf("{'name': 'John', 'active': true}").asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonKeysWithoutQuotes() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON keys without quotes",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf("{name: \"Maria\", age: 31}").asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonWithComments() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON with comments",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf(
+                    """
+                    { name: "Maria", // comment
+                    age: 31 }
+                    """
+                ).asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonUnbalanced() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON unbalanced",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf(
+                    """
+                    {
+                        "itens": [
+                            { "id": 1 },
+                            { "id": 2 }
+                    }
+                    """
+                ).asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsExceptionIfDictHasJsonWithInvalidTrue() {
+        new Assertion<>(
+            "must throw an exception when Dict has a JSON with invalid true",
+            new Throws<>(Exception.class),
+            new Matches<>(
+                () -> new DictOf("{ \"active\": True}").asString()
+            )
         ).affirm();
     }
 }
