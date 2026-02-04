@@ -20,7 +20,7 @@ import org.llorllale.cactoos.matchers.IsText;
 final class DictAsXmlTest {
     @Test
     void convertDictToXml() throws Exception {
-        final Dict dict = new Dict()
+        final Dict dict = new DictOf()
             .with("one", "One")
             .with("two", 1.0)
             .with("three", new BigDecimal("3.14"))
@@ -29,7 +29,7 @@ final class DictAsXmlTest {
             .with("six", LocalDateTime.of(2025, 5, 6, 14, 23, 52))
             .with(
                 "seven",
-                new Dict()
+                new DictOf()
                     .with("eight", "Eight")
                     .with("nine", 9.0)
             );
@@ -48,11 +48,11 @@ final class DictAsXmlTest {
 
     @Test
     void convertDictClientToXml() throws Exception {
-        final Dict dict = new Dict()
+        final Dict dict = new DictOf()
             .with("name", "Branco Mello")
             .with(
                 "address",
-                new Dict()
+                new DictOf()
                     .with("street", "Av Cruz das Armas")
                     .with("number", "349")
                     .with("complement", "")

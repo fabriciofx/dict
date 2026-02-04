@@ -17,12 +17,12 @@ import org.llorllale.cactoos.matchers.IsTrue;
 final class ContainsTest {
     @Test
     void checkIfADictContainsOther() throws Exception {
-        final Dict first = new Dict()
+        final Dict first = new DictOf()
             .with("id", "e576ddbb-d2f1-4bed-88ee-8eb5b6b57ecf")
             .with("client", "Samuel Rosa")
             .with(
                 "address",
-                new Dict()
+                new DictOf()
                     .with("city", "São Paulo")
                     .with("state", "SP")
                     .with("complement", "Apto 201")
@@ -31,11 +31,11 @@ final class ContainsTest {
                     .with("neighborhood", "Moema")
                     .with("zipcode", "12345678")
             );
-        final Dict second = new Dict()
+        final Dict second = new DictOf()
             .with("client", "Samuel Rosa")
             .with(
                 "address",
-                new Dict()
+                new DictOf()
                     .with("city", "São Paulo")
                     .with("state", "SP")
                     .with("complement", "Apto 201")

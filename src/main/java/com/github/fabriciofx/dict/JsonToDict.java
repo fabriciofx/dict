@@ -22,6 +22,6 @@ public final class JsonToDict extends JsonDeserializer<Dict> {
         final JsonParser parser,
         final DeserializationContext context
     ) throws IOException {
-        return new Dict(parser.getText());
+        return new DictOf(parser.getText());
     }
 }
