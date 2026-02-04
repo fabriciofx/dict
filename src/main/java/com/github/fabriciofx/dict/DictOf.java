@@ -4,7 +4,6 @@
  */
 package com.github.fabriciofx.dict;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -29,7 +28,6 @@ import org.cactoos.scalar.Unchecked;
  * <p> A Python-like dictionary for Java.
  * @since 0.0.1
  */
-@SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 @JsonSerialize(using = DictToJson.class)
 @JsonDeserialize(using = JsonToDict.class)
 public final class DictOf implements Dict {
@@ -54,21 +52,17 @@ public final class DictOf implements Dict {
             () -> {
                 final ObjectMapper mapper = new ObjectMapper();
                 mapper.registerModule(new JavaTimeModule());
-                try {
-                    final String content;
-                    if (json.isEmpty()) {
-                        content = "{}";
-                    } else {
-                        content = json;
-                    }
-                    return mapper.readValue(
-                        content,
-                        new TypeReference<>() {
-                        }
-                    );
-                } catch (final JsonProcessingException ex) {
-                    throw new Exception(ex);
+                final String content;
+                if (json.isEmpty()) {
+                    content = "{}";
+                } else {
+                    content = json;
                 }
+                return mapper.readValue(
+                    content,
+                    new TypeReference<>() {
+                    }
+                );
             }
         );
     }
@@ -141,25 +135,21 @@ public final class DictOf implements Dict {
 
     @Override
     public String asString() throws Exception {
-        try {
-            final ObjectMapper mapper = new ObjectMapper();
-            final JavaTimeModule module = new JavaTimeModule();
-            module.addSerializer(
-                LocalDate.class,
-                new LocalDateSerializer(
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                )
-            );
-            module.addSerializer(
-                LocalDateTime.class,
-                new LocalDateTimeSerializer(
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                )
-            );
-            mapper.registerModule(module);
-            return mapper.writeValueAsString(this.scalar.value());
-        } catch (final JsonProcessingException ex) {
-            throw new Exception(ex);
-        }
+        final ObjectMapper mapper = new ObjectMapper();
+        final JavaTimeModule module = new JavaTimeModule();
+        module.addSerializer(
+            LocalDate.class,
+            new LocalDateSerializer(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            )
+        );
+        module.addSerializer(
+            LocalDateTime.class,
+            new LocalDateTimeSerializer(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            )
+        );
+        mapper.registerModule(module);
+        return mapper.writeValueAsString(this.scalar.value());
     }
 }
