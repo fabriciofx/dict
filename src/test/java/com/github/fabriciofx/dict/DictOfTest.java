@@ -473,7 +473,7 @@ final class DictOfTest {
                 () -> new DictOf(
                     """
                     {
-                        "itens": [
+                        "items": [
                             { "id": 1 },
                             { "id": 2 }
                     }
