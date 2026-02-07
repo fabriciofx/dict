@@ -166,9 +166,9 @@ final class DictOfTest {
             dict,
             new IsText(
                 """
-                {"six":"2025-05-06 14:23:52","four":4,"one":"One",\
-                "seven":{"nine":9.0,"eight":"Eight"},"ten":[1,2,3],\
-                "five":"2025-05-06","three":3.14,"two":1.0}\
+                {"six":"2025-05-06 14:23:52","four":4,"one":"One","seven":\
+                {"nine":9.0,"eight":"Eight"},"ten":[1,2,3],"two":1.0,"three"\
+                :3.14,"five":"2025-05-06"}\
                 """
             )
         ).affirm();

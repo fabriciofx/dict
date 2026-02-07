@@ -42,7 +42,7 @@ final class DictAsXmlTest {
                 """
                 <six>2025-05-06 14:23:52</six><four>4</four><one>One</one>\
                 <seven><nine>9.0</nine><eight>Eight</eight></seven>\
-                <five>2025-05-06</five><three>3.14</three><two>1.0</two>\
+                <two>1.0</two><three>3.14</three><five>2025-05-06</five>\
                 """
             )
         ).affirm();
@@ -71,11 +71,12 @@ final class DictAsXmlTest {
             new DictAsXml(dict),
             new IsText(
                 """
-                <address><zipcode>58015805</zipcode><number>349</number>\
-                <city>João Pessoa</city><street>Av Cruz das Armas</street>\
-                <state>PB</state><neighborhood>Jaguaribe</neighborhood>\
-                <complement></complement></address><cpf>58613518052</cpf>\
-                <name>Branco Mello</name><birth>1962-03-16</birth>\
+                <name>Branco Mello</name><cpf>58613518052</cpf>\
+                <birth>1962-03-16</birth><address><zipcode>58015805</zipcode>\
+                <number>349</number><city>João Pessoa</city>\
+                <street>Av Cruz das Armas</street>\
+                <neighborhood>Jaguaribe</neighborhood><state>PB</state>\
+                <complement></complement></address>\
                 <email>brancomello@gmail.com</email>\
                 """
             )
