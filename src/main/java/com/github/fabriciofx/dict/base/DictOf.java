@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: Copyright (C) 2025-2026 Fabrício Barros Cabral
  * SPDX-License-Identifier: MIT
  */
-package com.github.fabriciofx.dict;
+package com.github.fabriciofx.dict.base;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.github.fabriciofx.dict.Dict;
 import com.github.fabriciofx.dict.json.DictToJson;
 import com.github.fabriciofx.dict.json.JsonToDict;
 import java.time.LocalDate;

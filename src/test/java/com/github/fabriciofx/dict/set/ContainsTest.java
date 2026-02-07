@@ -5,7 +5,7 @@
 package com.github.fabriciofx.dict.set;
 
 import com.github.fabriciofx.dict.Dict;
-import com.github.fabriciofx.dict.DictOf;
+import com.github.fabriciofx.dict.base.DictOf;
 import org.junit.jupiter.api.Test;
 import org.llorllale.cactoos.matchers.Assertion;
 import org.llorllale.cactoos.matchers.IsTrue;

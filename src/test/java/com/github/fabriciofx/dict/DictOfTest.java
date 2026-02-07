@@ -4,6 +4,7 @@
  */
 package com.github.fabriciofx.dict;
 
+import com.github.fabriciofx.dict.base.DictOf;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

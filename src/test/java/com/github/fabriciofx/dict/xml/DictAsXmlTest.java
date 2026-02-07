@@ -5,7 +5,7 @@
 package com.github.fabriciofx.dict.xml;
 
 import com.github.fabriciofx.dict.Dict;
-import com.github.fabriciofx.dict.DictOf;
+import com.github.fabriciofx.dict.base.DictOf;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

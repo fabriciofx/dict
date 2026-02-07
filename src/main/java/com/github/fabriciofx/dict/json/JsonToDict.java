@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.github.fabriciofx.dict.Dict;
-import com.github.fabriciofx.dict.DictOf;
+import com.github.fabriciofx.dict.base.DictOf;
 import java.io.IOException;
 
 /**
