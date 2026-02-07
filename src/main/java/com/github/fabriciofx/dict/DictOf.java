@@ -113,9 +113,10 @@ public final class DictOf implements Dict {
 
     @Override
     public Dict with(final String key, final Object value) {
-        final Map<String, Object> map = new HashMap<>();
+        final Map<String, Object> map = new HashMap<>(
+            this.scalar.value()
+        );
         map.put(key, value);
-        map.putAll(this.scalar.value());
         return new DictOf(map);
     }
 
