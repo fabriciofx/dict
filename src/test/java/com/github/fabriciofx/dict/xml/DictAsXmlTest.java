@@ -29,8 +29,7 @@ final class DictAsXmlTest {
             .with("three", new BigDecimal("3.14"))
             .with("four", 4)
             .with("five", LocalDate.of(2025, 5, 6))
-            .with("six", LocalDateTime.of(2025, 5, 6, 14, 23, 52))
-            .with(
+            .with("six", LocalDateTime.of(2025, 5, 6, 14, 23, 52)).with(
                 "seven",
                 new DictOf()
                     .with("eight", "Eight")
@@ -52,8 +51,7 @@ final class DictAsXmlTest {
     @Test
     void convertDictClientToXml() throws Exception {
         final Dict dict = new DictOf()
-            .with("name", "Branco Mello")
-            .with(
+            .with("name", "Branco Mello").with(
                 "address",
                 new DictOf()
                     .with("street", "Av Cruz das Armas")

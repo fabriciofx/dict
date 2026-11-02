@@ -22,8 +22,7 @@ final class ContainsTest {
     void checkIfADictContainsOther() throws Exception {
         final Dict first = new DictOf()
             .with("id", "e576ddbb-d2f1-4bed-88ee-8eb5b6b57ecf")
-            .with("client", "Samuel Rosa")
-            .with(
+            .with("client", "Samuel Rosa").with(
                 "address",
                 new DictOf()
                     .with("city", "São Paulo")
@@ -35,8 +34,7 @@ final class ContainsTest {
                     .with("zipcode", "12345678")
             );
         final Dict second = new DictOf()
-            .with("client", "Samuel Rosa")
-            .with(
+            .with("client", "Samuel Rosa").with(
                 "address",
                 new DictOf()
                     .with("city", "São Paulo")

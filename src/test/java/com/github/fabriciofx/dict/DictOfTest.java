@@ -155,8 +155,7 @@ final class DictOfTest {
             .with("three", new BigDecimal("3.14"))
             .with("four", 4)
             .with("five", LocalDate.of(2025, 5, 6))
-            .with("six", LocalDateTime.of(2025, 5, 6, 14, 23, 52))
-            .with(
+            .with("six", LocalDateTime.of(2025, 5, 6, 14, 23, 52)).with(
                 "seven",
                 new DictOf()
                     .with("eight", "Eight")
@@ -290,24 +289,20 @@ final class DictOfTest {
     void checksUnorderedAndComposed() {
         final Dict first = new DictOf()
             .with("1", "one")
-            .with("2", "two")
-            .with(
+            .with("2", "two").with(
                 "3",
                 new DictOf()
                     .with("4", "four")
                     .with("5", "five")
                     .with("6", "six")
             );
-        final Dict second = new DictOf()
-            .with(
-                "3",
-                new DictOf()
-                    .with("4", "four")
-                    .with("5", "five")
-                    .with("6", "six")
-            )
-            .with("1", "one")
-            .with("2", "two");
+        final Dict second = new DictOf().with(
+            "3",
+            new DictOf()
+                .with("4", "four")
+                .with("5", "five")
+                .with("6", "six")
+        ).with("1", "one").with("2", "two");
         new Assertion<>(
             "must be equal unordered and composed dicts",
             first,
@@ -325,23 +320,22 @@ final class DictOfTest {
             .with("city", "São Paulo")
             .with("state", "SP")
             .with("zipcode", "12345678");
-        final Dict items = new DictOf()
-            .with(
-                "1", new DictOf()
-                    .with("product", "Meia Lua Pandeirola Liverpool 16")
-                    .with("amount", 5.0)
-                    .with("price", 58.95)
-            ).with(
-                "2", new DictOf()
-                    .with("product", "Guitarra Fender")
-                    .with("amount", 3.0)
-                    .with("price", 5010.99)
-            ).with(
-                "3", new DictOf()
-                    .with("product", "Bateria DX-722")
-                    .with("amount", 1.0)
-                    .with("price", 3003.60)
-            );
+        final Dict items = new DictOf().with(
+            "1", new DictOf()
+                .with("product", "Meia Lua Pandeirola Liverpool 16")
+                .with("amount", 5.0)
+                .with("price", 58.95)
+        ).with(
+            "2", new DictOf()
+                .with("product", "Guitarra Fender")
+                .with("amount", 3.0)
+                .with("price", 5010.99)
+        ).with(
+            "3", new DictOf()
+                .with("product", "Bateria DX-722")
+                .with("amount", 1.0)
+                .with("price", 3003.60)
+        );
         final Dict first = new DictOf()
             .with("cpf", "25066158065")
             .with("client", "Samuel Rosa")
@@ -352,8 +346,7 @@ final class DictOfTest {
         final Dict second = new DictOf()
             .with("id", "07e2c7f2-6c61-4f20-a4bc-6022337950b4")
             .with("client", "Samuel Rosa")
-            .with("cpf", "25066158065")
-            .with(
+            .with("cpf", "25066158065").with(
                 "address",
                 new DictOf()
                     .with("street", "Rua do Benfica")
@@ -363,28 +356,24 @@ final class DictOfTest {
                     .with("city", "São Paulo")
                     .with("state", "SP")
                     .with("zipcode", "12345678")
-            )
-            .with(
+            ).with(
                 "items",
-                new DictOf()
-                    .with(
-                        "3", new DictOf()
-                            .with("product", "Bateria DX-722")
-                            .with("amount", 1.0)
-                            .with("price", 3003.60)
-                    )
-                    .with(
-                        "2", new DictOf()
-                            .with("product", "Guitarra Fender")
-                            .with("amount", 3.0)
-                            .with("price", 5010.99)
-                    )
-                    .with(
-                        "1", new DictOf()
-                            .with("product", "Meia Lua Pandeirola Liverpool 16")
-                            .with("amount", 5.0)
-                            .with("price", 58.95)
-                    )
+                new DictOf().with(
+                    "3", new DictOf()
+                        .with("product", "Bateria DX-722")
+                        .with("amount", 1.0)
+                        .with("price", 3003.60)
+                ).with(
+                    "2", new DictOf()
+                        .with("product", "Guitarra Fender")
+                        .with("amount", 3.0)
+                        .with("price", 5010.99)
+                ).with(
+                    "1", new DictOf()
+                        .with("product", "Meia Lua Pandeirola Liverpool 16")
+                        .with("amount", 5.0)
+                        .with("price", 58.95)
+                )
             )
             .with("total", new BigDecimal("18331.32"));
         new Assertion<>(
