@@ -5,6 +5,7 @@
 package com.github.fabriciofx.dict.xml;
 
 import com.github.fabriciofx.dict.Dict;
+import com.github.fabriciofx.dict.DictException;
 import org.cactoos.Text;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.json.JsonMapper;
@@ -17,7 +18,6 @@ import tools.jackson.dataformat.xml.XmlMapper;
  *
  * @since 0.0.1
  */
-@SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 public final class DictAsXml implements Text {
 
     /**
@@ -35,13 +35,13 @@ public final class DictAsXml implements Text {
     }
 
     @Override
-    public String asString() throws Exception {
+    public String asString() throws DictException {
         try {
             return XmlMapper.builder().build().writeValueAsString(
                 JsonMapper.builder().build().readTree(this.origin.asString())
             ).replaceAll("^<ObjectNode>|</ObjectNode>$", "");
         } catch (final JacksonException ex) {
-            throw new Exception(ex);
+            throw new DictException("Cannot convert dict to XML", ex);
         }
     }
 }

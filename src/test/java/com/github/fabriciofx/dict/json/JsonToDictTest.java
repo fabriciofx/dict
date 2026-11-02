@@ -18,7 +18,7 @@ import tools.jackson.databind.json.JsonMapper;
 final class JsonToDictTest {
 
     @Test
-    void readsDictFromJsonString() {
+    void readsDictFromJsonString() throws Exception {
         new Assertion<>(
             "must not read dict other than from its JSON string",
             JsonMapper.builder().build().readValue(

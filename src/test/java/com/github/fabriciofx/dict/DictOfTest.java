@@ -31,7 +31,7 @@ import org.llorllale.cactoos.matchers.Throws;
 final class DictOfTest {
 
     @Test
-    void checksKeys() {
+    void checksKeys() throws Exception {
         final Dict dict = new DictOf(
             """
             {"1": "one", "2": "two", "3": "three"}
@@ -45,7 +45,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checksValues() {
+    void checksValues() throws Exception {
         final Dict dict = new DictOf(
             """
             {"1": "one", "2": "two", "3": "three"}
@@ -59,7 +59,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesString() {
+    void retrievesString() throws Exception {
         final Dict dict = new DictOf().with("1", "One");
         new Assertion<>(
             "must retrieve the correct string",
@@ -69,7 +69,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesDouble() {
+    void retrievesDouble() throws Exception {
         final Dict dict = new DictOf().with("two", 3.1415);
         new Assertion<>(
             "must retrieve the correct double",
@@ -79,7 +79,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesBigDecimal() {
+    void retrievesBigDecimal() throws Exception {
         final Dict dict = new DictOf().with("three", new BigDecimal("3.14"));
         new Assertion<>(
             "must retrieve the correct BigDecimal",
@@ -89,7 +89,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesInteger() {
+    void retrievesInteger() throws Exception {
         final Dict dict = new DictOf().with("four", 4);
         new Assertion<>(
             "must retrieve the correct Integer",
@@ -99,7 +99,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesLocalDate() {
+    void retrievesLocalDate() throws Exception {
         final Dict dict = new DictOf().with("five", LocalDate.of(2025, 5, 6));
         new Assertion<>(
             "must retrieve the correct LocalDate",
@@ -109,7 +109,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesLocalDateTime() {
+    void retrievesLocalDateTime() throws Exception {
         final Dict dict = new DictOf().with(
             "six",
             LocalDateTime.of(2025, 5, 6, 14, 23, 52)
@@ -122,7 +122,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesDict() {
+    void retrievesDict() throws Exception {
         final Dict dict = new DictOf().with(
             "seven",
             new DictOf().with("8", "eight").with("nine", 9.0)
@@ -135,7 +135,7 @@ final class DictOfTest {
     }
 
     @Test
-    void retrievesList() {
+    void retrievesList() throws Exception {
         final Dict dict = new DictOf().with("ten", new ListOf<>(1, 2, 3));
         new Assertion<>(
             "must retrieve the correct List",
@@ -145,7 +145,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checksJson() {
+    void checksJson() throws Exception {
         final Dict dict = new DictOf()
             .with("one", "One")
             .with("two", 1.0)
@@ -173,7 +173,7 @@ final class DictOfTest {
     }
 
     @Test
-    void jsonToList() {
+    void jsonToList() throws Exception {
         final Dict dict = new DictOf("{\"numbers\":[1,2,3]}");
         final List<Integer> numbers = dict.value(
             "numbers",
@@ -187,7 +187,7 @@ final class DictOfTest {
     }
 
     @Test
-    void countsEmptyStringAsZero() {
+    void countsEmptyStringAsZero() throws Exception {
         new Assertion<>(
             "must count empty string as zero",
             new DictOf("").count(),
@@ -196,7 +196,7 @@ final class DictOfTest {
     }
 
     @Test
-    void countsEmptyDictAsZero() {
+    void countsEmptyDictAsZero() throws Exception {
         new Assertion<>(
             "must count empty dict as zero",
             new DictOf("{}").count(),
@@ -205,7 +205,7 @@ final class DictOfTest {
     }
 
     @Test
-    void countsOne() {
+    void countsOne() throws Exception {
         final Dict dict = new DictOf(
             """
             {"1": "one"}
@@ -219,7 +219,7 @@ final class DictOfTest {
     }
 
     @Test
-    void countsThree() {
+    void countsThree() throws Exception {
         final Dict dict = new DictOf(
             """
             {"1": "one", "2": "two", "3": "three"}
@@ -233,7 +233,7 @@ final class DictOfTest {
     }
 
     @Test
-    void createsDictUsingFluent() {
+    void createsDictUsingFluent() throws Exception {
         final Dict dict = new DictOf()
             .with("1", "one")
             .with("2", "two")
@@ -250,7 +250,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checkEquals() {
+    void checkEquals() throws Exception {
         final Dict first = new DictOf()
             .with("1", "one")
             .with("2", "two")
@@ -267,7 +267,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checkNotEquals() {
+    void checkNotEquals() throws Exception {
         final Dict first = new DictOf()
             .with("1", "one")
             .with("2", "two");
@@ -283,7 +283,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checksUnorderedAndComposed() {
+    void checksUnorderedAndComposed() throws Exception {
         final Dict first = new DictOf()
             .with("1", "one")
             .with("2", "two").with(
@@ -308,7 +308,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checksUnorderedAndDeeplyComposed() {
+    void checksUnorderedAndDeeplyComposed() throws Exception {
         final Dict address = new DictOf()
             .with("street", "Rua do Benfica")
             .with("number", "123")
@@ -381,7 +381,7 @@ final class DictOfTest {
     }
 
     @Test
-    void checksDictWithLocalDate() {
+    void checksDictWithLocalDate() throws Exception {
         final Dict dict = new DictOf().with("birth", LocalDate.of(1962, 3, 16));
         new Assertion<>(
             "must be equal dicts with LocalDate",
@@ -394,7 +394,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasBadJson() {
         new Assertion<>(
             "must throw an exception when Dict has a bad JSON",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf("{bad json}").asString()
             )
@@ -405,7 +405,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonWithLastComma() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON with last comma",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf(
                     "{\"name\": \"John\", \"age\": 42,}"
@@ -418,7 +418,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonWithSingleQuote() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON with single quote",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf("{'name': 'John', 'active': true}").asString()
             )
@@ -429,7 +429,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonKeysWithoutQuotes() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON keys without quotes",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf("{name: \"Maria\", age: 31}").asString()
             )
@@ -440,7 +440,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonWithComments() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON with comments",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf(
                     """
@@ -456,7 +456,7 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonUnbalanced() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON unbalanced",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf(
                     """
@@ -475,9 +475,40 @@ final class DictOfTest {
     void throwsExceptionIfDictHasJsonWithInvalidTrue() {
         new Assertion<>(
             "must throw an exception when Dict has a JSON with invalid true",
-            new Throws<>(Exception.class),
+            new Throws<>(DictException.class),
             new Matches<>(
                 () -> new DictOf("{ \"active\": True}").asString()
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsDictExceptionIfValueHasWrongType() {
+        new Assertion<>(
+            "must not retrieve a value with a wrong type",
+            new Throws<>(DictException.class),
+            new Matches<>(
+                () -> new DictOf().with("x4", 17).value("x4", String.class)
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsDictExceptionIfKeysHasBadJson() {
+        new Assertion<>(
+            "must not retrieve keys from a bad JSON",
+            new Throws<>(DictException.class),
+            new Matches<>(() -> new DictOf("{\"r2\": nul}").keys())
+        ).affirm();
+    }
+
+    @Test
+    void throwsDictExceptionIfInnerDictHasBadJson() {
+        new Assertion<>(
+            "must not convert to JSON a dict with a bad inner JSON",
+            new Throws<>(DictException.class),
+            new Matches<>(
+                () -> new DictOf().with("k9", new DictOf("{\"z\":}")).asString()
             )
         ).affirm();
     }

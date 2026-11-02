@@ -5,6 +5,7 @@
 package com.github.fabriciofx.dict.set;
 
 import com.github.fabriciofx.dict.Dict;
+import com.github.fabriciofx.dict.DictException;
 import org.cactoos.Scalar;
 
 /**
@@ -38,7 +39,7 @@ public final class Contains implements Scalar<Boolean> {
     }
 
     @Override
-    public Boolean value() throws Exception {
+    public Boolean value() throws DictException {
         boolean result = true;
         for (final String key : this.first.keys()) {
             if (this.second.keys().contains(key)) {

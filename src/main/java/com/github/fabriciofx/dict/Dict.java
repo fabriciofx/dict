@@ -21,22 +21,25 @@ public interface Dict extends Text {
      * Dict keys.
      *
      * @return A set of dict keys
+     * @throws DictException If dict content cannot be read
      */
-    Set<String> keys();
+    Set<String> keys() throws DictException;
 
     /**
      * Dict values.
      *
      * @return A collection of dict values
+     * @throws DictException If dict content cannot be read
      */
-    Collection<Object> values();
+    Collection<Object> values() throws DictException;
 
     /**
      * Count.
      *
      * @return Amount of dict entries
+     * @throws DictException If dict content cannot be read
      */
-    int count();
+    int count() throws DictException;
 
     /**
      * Value.
@@ -45,8 +48,10 @@ public interface Dict extends Text {
      * @param type The type of value
      * @param <T> Value type
      * @return The value
+     * @throws DictException If dict content cannot be read or value has
+     *  another type
      */
-    <T> T value(String key, Class<T> type);
+    <T> T value(String key, Class<T> type) throws DictException;
 
     /**
      * Build a dict.
@@ -54,6 +59,10 @@ public interface Dict extends Text {
      * @param key The key of value
      * @param value The value to store in dict
      * @return A new dict with the key and value stored
+     * @throws DictException If dict content cannot be read
      */
-    Dict with(String key, Object value);
+    Dict with(String key, Object value) throws DictException;
+
+    @Override
+    String asString() throws DictException;
 }

@@ -5,7 +5,9 @@
 package com.github.fabriciofx.dict.json;
 
 import com.github.fabriciofx.dict.Dict;
+import com.github.fabriciofx.dict.DictException;
 import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.DatabindException;
 import tools.jackson.databind.SerializationContext;
 import tools.jackson.databind.ValueSerializer;
 
@@ -31,10 +33,21 @@ public final class DictToJson extends ValueSerializer<Dict> {
         final JsonGenerator generator,
         final SerializationContext context
     ) {
-        generator.writeStartObject();
-        for (final String key : dict.keys()) {
-            generator.writePOJOProperty(key, dict.value(key, Object.class));
+        try {
+            generator.writeStartObject();
+            for (final String key : dict.keys()) {
+                generator.writePOJOProperty(
+                    key,
+                    dict.value(key, Object.class)
+                );
+            }
+            generator.writeEndObject();
+        } catch (final DictException ex) {
+            throw DatabindException.from(
+                context,
+                "Cannot write inner dict as JSON",
+                ex
+            );
         }
-        generator.writeEndObject();
     }
 }

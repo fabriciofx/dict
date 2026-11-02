@@ -18,7 +18,7 @@ import tools.jackson.databind.json.JsonMapper;
 final class DictToJsonTest {
 
     @Test
-    void writesDictAsJsonObject() {
+    void writesDictAsJsonObject() throws Exception {
         new Assertion<>(
             "must not write dict other than as a JSON object",
             JsonMapper.builder().build().writeValueAsString(

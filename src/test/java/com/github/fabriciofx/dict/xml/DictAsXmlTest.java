@@ -5,6 +5,7 @@
 package com.github.fabriciofx.dict.xml;
 
 import com.github.fabriciofx.dict.Dict;
+import com.github.fabriciofx.dict.DictException;
 import com.github.fabriciofx.dict.base.DictOf;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import org.llorllale.cactoos.matchers.Assertion;
 import org.llorllale.cactoos.matchers.IsText;
+import org.llorllale.cactoos.matchers.Matches;
+import org.llorllale.cactoos.matchers.Throws;
 
 /**
  * Test case for {@link DictAsXml}.
@@ -78,6 +81,17 @@ final class DictAsXmlTest {
                 <complement></complement></address>\
                 <email>brancomello@gmail.com</email>\
                 """
+            )
+        ).affirm();
+    }
+
+    @Test
+    void throwsDictExceptionIfDictHasBadJson() {
+        new Assertion<>(
+            "must not convert to XML a dict with a bad JSON",
+            new Throws<>(DictException.class),
+            new Matches<>(
+                () -> new DictAsXml(new DictOf("{\"q9\": tru}")).asString()
             )
         ).affirm();
     }
