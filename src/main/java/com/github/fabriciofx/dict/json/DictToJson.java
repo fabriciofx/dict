@@ -19,6 +19,13 @@ import java.io.IOException;
  */
 public final class DictToJson extends JsonSerializer<Dict> {
 
+    /**
+     * Ctor.
+     */
+    public DictToJson() {
+        super();
+    }
+
     @Override
     public void serialize(
         final Dict dict,
