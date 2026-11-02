@@ -9,7 +9,7 @@ package com.github.fabriciofx.dict;
  *
  * <p>A failure while building, reading or converting a dict.</p>
  *
- * @since 0.0.39
+ * @since 0.0.43
  */
 public final class DictException extends Exception {
 

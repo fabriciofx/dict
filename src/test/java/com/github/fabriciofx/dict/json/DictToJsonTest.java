@@ -13,7 +13,7 @@ import tools.jackson.databind.json.JsonMapper;
 /**
  * Test case for {@link DictToJson}.
  *
- * @since 0.0.39
+ * @since 0.0.43
  */
 final class DictToJsonTest {
 

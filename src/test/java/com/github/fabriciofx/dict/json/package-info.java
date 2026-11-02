@@ -6,6 +6,6 @@
 /**
  * JSON tests.
  *
- * @since 0.0.39
+ * @since 0.0.43
  */
 package com.github.fabriciofx.dict.json;
