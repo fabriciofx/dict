@@ -91,7 +91,7 @@ final class DictAsXmlTest {
             "must not convert to XML a dict with a bad JSON",
             new Throws<>(DictException.class),
             new Matches<>(
-                () -> new DictAsXml(new DictOf("{\"q9\": tru}")).asString()
+                () -> new DictAsXml(new DictOf("{\"q9\": bad}")).asString()
             )
         ).affirm();
     }
