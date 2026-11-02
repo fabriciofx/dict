@@ -54,7 +54,7 @@ SPDX-License-Identifier: MIT
   <properties>
     <maven.plugin.validation>VERBOSE</maven.plugin.validation>
     <github.repo>fabriciofx/dict</github.repo>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
   <dependencies>
     <dependency>
