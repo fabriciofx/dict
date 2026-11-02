@@ -15,6 +15,7 @@ import org.cactoos.Scalar;
  * @since 0.0.1
  */
 public final class Contains implements Scalar<Boolean> {
+
     /**
      * First dict.
      */

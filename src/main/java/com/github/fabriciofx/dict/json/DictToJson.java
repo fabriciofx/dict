@@ -18,6 +18,7 @@ import java.io.IOException;
  * @since 0.0.1
  */
 public final class DictToJson extends JsonSerializer<Dict> {
+
     @Override
     public void serialize(
         final Dict dict,

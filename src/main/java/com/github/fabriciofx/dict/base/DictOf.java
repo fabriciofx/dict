@@ -34,6 +34,7 @@ import org.cactoos.scalar.Unchecked;
 @JsonSerialize(using = DictToJson.class)
 @JsonDeserialize(using = JsonToDict.class)
 public final class DictOf implements Dict {
+
     /**
      * Map.
      */

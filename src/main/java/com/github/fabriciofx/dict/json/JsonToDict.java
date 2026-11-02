@@ -19,6 +19,7 @@ import java.io.IOException;
  * @since 0.0.1
  */
 public final class JsonToDict extends JsonDeserializer<Dict> {
+
     @Override
     public Dict deserialize(
         final JsonParser parser,

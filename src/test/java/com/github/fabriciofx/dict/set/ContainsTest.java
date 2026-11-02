@@ -17,6 +17,7 @@ import org.llorllale.cactoos.matchers.IsTrue;
  */
 @SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.UnitTestShouldIncludeAssert"})
 final class ContainsTest {
+
     @Test
     void checkIfADictContainsOther() throws Exception {
         final Dict first = new DictOf()

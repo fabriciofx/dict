@@ -20,6 +20,7 @@ import org.llorllale.cactoos.matchers.IsText;
  */
 @SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.UnitTestShouldIncludeAssert"})
 final class DictAsXmlTest {
+
     @Test
     void convertDictToXml() throws Exception {
         final Dict dict = new DictOf()

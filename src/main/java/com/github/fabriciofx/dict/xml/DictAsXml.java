@@ -20,6 +20,7 @@ import org.cactoos.Text;
  */
 @SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 public final class DictAsXml implements Text {
+
     /**
      * Dict.
      */

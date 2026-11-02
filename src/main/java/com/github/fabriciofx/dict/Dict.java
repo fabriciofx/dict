@@ -16,6 +16,7 @@ import org.cactoos.Text;
  * @since 0.0.1
  */
 public interface Dict extends Text {
+
     /**
      * Dict keys.
      *

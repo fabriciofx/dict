@@ -32,6 +32,7 @@ import org.llorllale.cactoos.matchers.Throws;
     "PMD.UnitTestShouldIncludeAssert"
 })
 final class DictOfTest {
+
     @Test
     void checksKeys() {
         final Dict dict = new DictOf(
