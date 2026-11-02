@@ -4,13 +4,6 @@
  */
 package com.github.fabriciofx.dict.base;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.github.fabriciofx.dict.Dict;
 import com.github.fabriciofx.dict.json.DictToJson;
 import com.github.fabriciofx.dict.json.JsonToDict;
@@ -23,6 +16,13 @@ import java.util.Map;
 import java.util.Set;
 import org.cactoos.Scalar;
 import org.cactoos.scalar.Unchecked;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.ext.javatime.ser.LocalDateSerializer;
+import tools.jackson.databind.ext.javatime.ser.LocalDateTimeSerializer;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.module.SimpleModule;
 
 /**
  * Dict.
@@ -55,15 +55,13 @@ public final class DictOf implements Dict {
     public DictOf(final String json) {
         this(
             () -> {
-                final ObjectMapper mapper = new ObjectMapper();
-                mapper.registerModule(new JavaTimeModule());
                 final String content;
                 if (json.isEmpty()) {
                     content = "{}";
                 } else {
                     content = json;
                 }
-                return mapper.readValue(
+                return JsonMapper.builder().build().readValue(
                     content,
                     new TypeReference<>() {
                     }
@@ -144,8 +142,7 @@ public final class DictOf implements Dict {
 
     @Override
     public String asString() throws Exception {
-        final ObjectMapper mapper = new ObjectMapper();
-        final JavaTimeModule module = new JavaTimeModule();
+        final SimpleModule module = new SimpleModule();
         module.addSerializer(
             LocalDate.class,
             new LocalDateSerializer(
@@ -158,7 +155,7 @@ public final class DictOf implements Dict {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             )
         );
-        mapper.registerModule(module);
-        return mapper.writeValueAsString(this.scalar.value());
+        return JsonMapper.builder().addModule(module).build()
+            .writeValueAsString(this.scalar.value());
     }
 }

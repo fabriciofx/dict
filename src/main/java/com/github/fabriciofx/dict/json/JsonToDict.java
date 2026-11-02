@@ -4,12 +4,11 @@
  */
 package com.github.fabriciofx.dict.json;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.github.fabriciofx.dict.Dict;
 import com.github.fabriciofx.dict.base.DictOf;
-import java.io.IOException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.ValueDeserializer;
 
 /**
  * JsonToDict.
@@ -18,7 +17,7 @@ import java.io.IOException;
  *
  * @since 0.0.1
  */
-public final class JsonToDict extends JsonDeserializer<Dict> {
+public final class JsonToDict extends ValueDeserializer<Dict> {
 
     /**
      * Ctor.
@@ -31,7 +30,7 @@ public final class JsonToDict extends JsonDeserializer<Dict> {
     public Dict deserialize(
         final JsonParser parser,
         final DeserializationContext context
-    ) throws IOException {
-        return new DictOf(parser.getText());
+    ) {
+        return new DictOf(parser.getString());
     }
 }

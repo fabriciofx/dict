@@ -4,12 +4,11 @@
  */
 package com.github.fabriciofx.dict.xml;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.fabriciofx.dict.Dict;
 import org.cactoos.Text;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.dataformat.xml.XmlMapper;
 
 /**
  * DictAsXml.
@@ -37,15 +36,11 @@ public final class DictAsXml implements Text {
 
     @Override
     public String asString() throws Exception {
-        final ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        final XmlMapper xml = new XmlMapper();
-        xml.registerModule(new JavaTimeModule());
         try {
-            return xml.writeValueAsString(
-                mapper.readTree(this.origin.asString())
+            return XmlMapper.builder().build().writeValueAsString(
+                JsonMapper.builder().build().readTree(this.origin.asString())
             ).replaceAll("^<ObjectNode>|</ObjectNode>$", "");
-        } catch (final JsonProcessingException ex) {
+        } catch (final JacksonException ex) {
             throw new Exception(ex);
         }
     }

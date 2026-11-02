@@ -4,11 +4,10 @@
  */
 package com.github.fabriciofx.dict.json;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.github.fabriciofx.dict.Dict;
-import java.io.IOException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
 /**
  * DictToJson.
@@ -17,7 +16,7 @@ import java.io.IOException;
  *
  * @since 0.0.1
  */
-public final class DictToJson extends JsonSerializer<Dict> {
+public final class DictToJson extends ValueSerializer<Dict> {
 
     /**
      * Ctor.
@@ -30,11 +29,11 @@ public final class DictToJson extends JsonSerializer<Dict> {
     public void serialize(
         final Dict dict,
         final JsonGenerator generator,
-        final SerializerProvider provider
-    ) throws IOException {
+        final SerializationContext context
+    ) {
         generator.writeStartObject();
         for (final String key : dict.keys()) {
-            generator.writeObjectField(key, dict.value(key, Object.class));
+            generator.writePOJOProperty(key, dict.value(key, Object.class));
         }
         generator.writeEndObject();
     }
