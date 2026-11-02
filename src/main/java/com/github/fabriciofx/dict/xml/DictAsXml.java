@@ -14,7 +14,7 @@ import org.cactoos.Text;
 /**
  * DictAsXml.
  *
- * Convert a dict in XML.
+ * <p>Convert a dict in XML.</p>
  *
  * @since 0.0.1
  */
@@ -27,6 +27,7 @@ public final class DictAsXml implements Text {
 
     /**
      * Ctor.
+     *
      * @param dict Dict to be converted in XML
      */
     public DictAsXml(final Dict dict) {

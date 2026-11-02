@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * JsonToDict.
  *
- * Convert a JSON in dict.
+ * <p>Convert a JSON in dict.</p>
  *
  * @since 0.0.1
  */

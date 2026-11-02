@@ -10,30 +10,36 @@ import org.cactoos.Text;
 
 /**
  * Dict.
- * <p> A Python-like dictionary for Java.
+ *
+ * <p>A Python-like dictionary for Java.</p>
+ *
  * @since 0.0.1
  */
 public interface Dict extends Text {
     /**
      * Dict keys.
-     * @return A set of dict keys.
+     *
+     * @return A set of dict keys
      */
     Set<String> keys();
 
     /**
      * Dict values.
-     * @return A collection of dict values.
+     *
+     * @return A collection of dict values
      */
     Collection<Object> values();
 
     /**
      * Count.
-     * @return Amount of dict entries.
+     *
+     * @return Amount of dict entries
      */
     int count();
 
     /**
      * Value.
+     *
      * @param key The key of value
      * @param type The type of value
      * @param <T> Value type
@@ -43,9 +49,10 @@ public interface Dict extends Text {
 
     /**
      * Build a dict.
-     * @param key The key of value.
-     * @param value The value to store in dict.
-     * @return A new dict with the key and value stored.
+     *
+     * @param key The key of value
+     * @param value The value to store in dict
+     * @return A new dict with the key and value stored
      */
     Dict with(String key, Object value);
 }

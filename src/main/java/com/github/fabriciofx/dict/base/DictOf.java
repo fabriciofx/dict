@@ -26,7 +26,9 @@ import org.cactoos.scalar.Unchecked;
 
 /**
  * Dict.
- * <p> A Python-like dictionary for Java.
+ *
+ * <p>A Python-like dictionary for Java.</p>
+ *
  * @since 0.0.1
  */
 @JsonSerialize(using = DictToJson.class)
@@ -46,7 +48,8 @@ public final class DictOf implements Dict {
 
     /**
      * Ctor.
-     * @param json JSON string to convert in dict.
+     *
+     * @param json JSON string to convert in dict
      */
     public DictOf(final String json) {
         this(
@@ -70,7 +73,8 @@ public final class DictOf implements Dict {
 
     /**
      * Ctor.
-     * @param data Map to convert in dict.
+     *
+     * @param data Map to convert in dict
      */
     public DictOf(final Map<String, Object> data) {
         this(() -> data);
@@ -78,7 +82,8 @@ public final class DictOf implements Dict {
 
     /**
      * Ctor.
-     * @param scalar Map to convert in dict.
+     *
+     * @param scalar Map to convert in dict
      */
     public DictOf(final Scalar<Map<String, Object>> scalar) {
         this(new Unchecked<>(scalar));
@@ -86,7 +91,8 @@ public final class DictOf implements Dict {
 
     /**
      * Ctor.
-     * @param scalar Map to convert in dict.
+     *
+     * @param scalar Map to convert in dict
      */
     public DictOf(final Unchecked<Map<String, Object>> scalar) {
         this.scalar = scalar;

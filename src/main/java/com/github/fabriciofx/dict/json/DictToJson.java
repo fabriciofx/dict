@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * DictToJson.
  *
- * Convert a dict in JSON.
+ * <p>Convert a dict in JSON.</p>
  *
  * @since 0.0.1
  */

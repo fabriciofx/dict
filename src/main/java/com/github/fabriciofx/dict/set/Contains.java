@@ -10,7 +10,7 @@ import org.cactoos.Scalar;
 /**
  * Contains.
  *
- * Check if a Dict contains another Dict.
+ * <p>Check if a Dict contains another Dict.</p>
  *
  * @since 0.0.1
  */
@@ -27,6 +27,7 @@ public final class Contains implements Scalar<Boolean> {
 
     /**
      * Ctor.
+     *
      * @param first First dict to compare
      * @param second Second dict to compare
      */
