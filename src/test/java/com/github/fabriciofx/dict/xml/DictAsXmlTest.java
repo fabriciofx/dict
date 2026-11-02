@@ -18,7 +18,7 @@ import org.llorllale.cactoos.matchers.IsText;
  *
  * @since 0.0.1
  */
-@SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.UnitTestShouldIncludeAssert"})
+@SuppressWarnings("PMD.UnnecessaryLocalRule")
 final class DictAsXmlTest {
 
     @Test

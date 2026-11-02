@@ -26,10 +26,7 @@ import org.llorllale.cactoos.matchers.Throws;
  */
 @SuppressWarnings({
     "unchecked",
-    "PMD.TooManyMethods",
-    "PMD.AvoidDuplicateLiterals",
-    "PMD.UnnecessaryLocalRule",
-    "PMD.UnitTestShouldIncludeAssert"
+    "PMD.UnnecessaryLocalRule"
 })
 final class DictOfTest {
 
