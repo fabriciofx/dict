@@ -512,4 +512,15 @@ final class DictOfTest {
             )
         ).affirm();
     }
+
+    @Test
+    void throwsDictExceptionIfKeyDoesNotExist() {
+        new Assertion<>(
+            "must not retrieve a value of an absent key",
+            new Throws<>(DictException.class),
+            new Matches<>(
+                () -> new DictOf().with("p5", "lâmina").value("y8", String.class)
+            )
+        ).affirm();
+    }
 }

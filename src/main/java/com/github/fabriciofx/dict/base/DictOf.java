@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import org.cactoos.Scalar;
 import org.cactoos.scalar.Unchecked;
@@ -117,8 +118,15 @@ public final class DictOf implements Dict {
     @Override
     public <T> T value(final String key, final Class<T> type)
         throws DictException {
+        final Map<String, Object> map = this.entries();
+        if (!map.containsKey(key)) {
+            throw new DictException(
+                String.format("Cannot find key '%s' in dict", key),
+                new NoSuchElementException(key)
+            );
+        }
         try {
-            return type.cast(this.entries().get(key));
+            return type.cast(map.get(key));
         } catch (final ClassCastException ex) {
             throw new DictException(
                 String.format(
